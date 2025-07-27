@@ -15,3 +15,14 @@ if __name__ == "__main__":
     plt.ylabel("Last [MW]")
     plt.tight_layout()
     plt.show()
+    
+def add_time_features(df):
+    df["hour"] = df.index.hour
+    df["day_of_week"] = df.index.dayofweek
+    df["is_weekend"] = df["day_of_week"] >= 5
+    return df
+
+if __name__ == "__main__":
+    df = load_simulated_data()
+    df = add_time_features(df)
+    print(df.head())
