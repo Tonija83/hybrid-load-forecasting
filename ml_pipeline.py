@@ -87,3 +87,28 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+from xgboost import XGBRegressor
+from sklearn.model_selection import GridSearchCV
+
+def train_xgboost(X_train, y_train):
+    model = XGBRegressor(objective='reg:squarederror', random_state=42)
+    
+    param_grid = {
+        'n_estimators': [50, 100],
+        'max_depth': [3, 5, 7],
+        'learning_rate': [0.01, 0.1, 0.3],
+    }
+
+    grid_search = GridSearchCV(model, param_grid, cv=3, scoring='neg_mean_absolute_error', verbose=1)
+    grid_search.fit(X_train, y_train)
+    
+    best_model = grid_search.best_estimator_
+    print("Best XGBoost params:", grid_search.best_params_)
+    
+    return best_model
+
+xgb_model = train_xgboost(X_train, y_train)
+y_pred_xgb = xgb_model.predict(X_test)
+print("XGBoost MAE:", mean_absolute_error(y_test, y_pred_xgb))
+
