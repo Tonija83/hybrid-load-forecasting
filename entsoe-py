@@ -1,0 +1,17 @@
+from entsoe import EntsoePandasClient
+import pandas as pd
+
+API_KEY = "DEIN_API_KEY_HIER"  # Platzhalter
+
+client = EntsoePandasClient(api_key=API_KEY)
+
+start = pd.Timestamp("20240101", tz="Europe/Brussels")
+end = pd.Timestamp("20240108", tz="Europe/Brussels")
+country_code = "AT"  # Österreich
+
+try:
+    df = client.query_load(country_code, start=start, end=end)
+    df.to_csv("data/entsoe_load_AT.csv")
+    print(df.head())
+except Exception as e:
+    print("Noch kein gültiger API-Key oder Anfragefehler:", e)
