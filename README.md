@@ -1,3 +1,3 @@
-# ⚡ Load Forecasting mit Machine Learning
+# Hybrid Load Forecasting
 
-Dieses Projekt demonstriert die Vorhersage der elektrischen Last (Load Forecasting) auf Basis stündlicher Daten. Es nutzt klassische ML-Modelle wie Random Forest, Linear Regression und XGBoost – mit der Option, ein LSTM-Modell für zeitabhängige Prognosen zu integrieren. Aktuell arbeiten wir mit simulierten ENTSO-E-Daten, später folgt der Zugriff auf Echtzeitdaten via API.
+Ein hybrides Machine-Learning-Projekt zur Lastprognose mit Random Forest, XGBoost und LSTM.
